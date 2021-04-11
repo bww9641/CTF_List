@@ -1,0 +1,85 @@
+leave ret
+rax 0
+rdi 0
+rsi 0x1224800 ( input )
+rdx 0x100 (length)
+
+read(0, 0x1224800, 0x100);
+
+rcx 0 (index)
+rax 8
+rsp +8
+
+rax 0x1224800
+rax 0x1224800 (+rcx(0))
+rdi 0x1224800
+
+rax input[0]
+rdi 0
+rax input[0] (-rdi(0))
+rdi 8
+rax input[0]*8 (*rdi(8))
+rsp 0x12250d8+input[0]*8 (must be in 0x1224000 dummy)
+
+rax to index 0
+rcx 1
+rax index + 1
+rcx index + 1
+
+rbp 0x1225070
+leaveret
+
+rax length(input)
+rdi 0x24
+length-0x24
+rdi 8
+
+rax 0x1224800 (input)
+rax 0x1224800+0x24
+rcx -1
+rax 0x1224800+0x24-1
+rdi 0x1224800+0x24-1
+rax 0
+input[0x24-1]='\0'
+rdi 0x1224900
+rax 0xfb
+*0x1224900=0xfb
+
+rcx 0
+rax 8
+rsp +8
+rax 0x1224800
+rax 0x1224800 (+rcx(0))
+rdi 0x1224800
+rax input[0]
+rdi 0
+rax input[0] (-rdi(0))
+rdi 8
+rax input[0]*8 (*rdi(8))
+
+rsp 0x1226ab8
+rax 0x1224800 (input)
+rax 0x1224800 (+rcx(0))
+rdi 0x1224800
+rax input[0]
+rdx input[0]
+rax encode
+rax encode (+rcx(0))
+rdi encode
+rax encode[0]
+rax encode[0]*input[0]
+rdi 0x1224900 (0xfb)
+rdx 0
+rax encode[0]*input[0]/0xfb
+rdx (encode[0]*input[0])%0xfb
+rax (encode[0]*input[0])%0xfb
+rdi 1
+rax (encode[0]*input[0])%0xfb - 1
+rdi 8
+rax ((encode[0]*input[0])%0xfb - 1) * 8
+
+rax index(0)
+rcx 1
+
+rax index + 1
+rcx index + 1
